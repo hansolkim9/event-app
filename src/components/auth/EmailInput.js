@@ -23,7 +23,7 @@ const EmailInput = () => {
 
     // 이메일 검증 후속 처리
     const checkEmail = async (email) => {
-        if (!emailValid) {
+        if (!validateEmail(email)) {
             // 에러메세지 세팅
             setError('이메일 형식이 유효하지 않습니다.');
             return;
@@ -42,11 +42,11 @@ const EmailInput = () => {
 
     const changeHandler = e => {
         const email = e.target.value;
-        const isValid = validateEmail(email);
+        // const isValid = validateEmail(email);
         // console.log('isValid: ', isValid);
 
         setEnteredEmail(email);
-        setEmailValid(isValid);
+        // setEmailValid(isValid);
 
         // 이메일 검증 후속처리
         checkEmail(email);
