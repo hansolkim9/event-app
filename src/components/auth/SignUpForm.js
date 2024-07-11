@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from './SignUpForm.module.css';
+import styles from './SignUpForm.module.scss';
 import EmailInput from "./EmailInput";
 
 const SignUpForm = () => {
     return (
-        <div className={styles.signUpForm}>
+        <div className={styles.signupForm}>
             <div className={styles.formStepActive}>
 
                 <EmailInput />
