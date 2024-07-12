@@ -7,9 +7,6 @@ const EmailInput = ({ onSuccess }) => {
 
     const inputRef = useRef();
 
-    // 입력한 이메일
-    const [enteredEmail, setEnteredEmail] = useState('');
-
     // 검증여부
     const [emailValid, setEmailValid] = useState(false);
 
@@ -31,13 +28,14 @@ const EmailInput = ({ onSuccess }) => {
         }
 
         // 중복검사
-        const response = await fetch(`${AUTH_URL}/check-email?email=${email}`, {});
-        // console.log('res: ', response);
+        const response = await fetch(`${AUTH_URL}/check-email?email=${email}`);
+        console.log('res: ', response);
         const flag = await response.json();
-        // console.log('flag: ', flag);
+        console.log('flag: ', flag);
         if (flag) {
-            setEmailValid(true);
+            setEmailValid(false);
             setError('이메일이 중복되었습니다');
+            return;
         }
 
         // 이메일 중복확인 끝
@@ -46,13 +44,8 @@ const EmailInput = ({ onSuccess }) => {
 
     }, 1500);
 
-    const changeHandler = e => {
+    const changeHandler = (e) => {
         const email = e.target.value;
-        // const isValid = validateEmail(email);
-        // console.log('isValid: ', isValid);
-
-        // setEnteredEmail(email);
-        // setEmailValid(isValid);
 
         // 이메일 검증 후속처리
         checkEmail(email);
@@ -74,7 +67,7 @@ const EmailInput = ({ onSuccess }) => {
                 onChange={changeHandler}
                 className={!emailValid ? styles.invalidInput : ''}
             />
-            { !emailValid && <p className={styles.errorMessage}>{error}</p> }
+            {!emailValid && <p className={styles.errorMessage}>{error}</p>}
         </>
     );
 };

@@ -49,8 +49,8 @@ const SignUpForm = () => {
 
     // 서버에 회원가입 완료 요청하기
     const submitHandler = async (e) => {
-
-        e.preventDefault();
+        if (!activeButton) return;
+        e.preventDefault(); // 새로고침 막는 용도
         const payload = {
             email: enteredEmail,
             password: enteredPassword
