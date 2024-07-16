@@ -64,7 +64,6 @@ export const loginAction = async ({ request }) => {
 
     // 로그인 성공한 경우
     const responseData = await response.json();
-    console.log(responseData);
 
     // 브라우저 저장소 (localStorage: 쿠키, sessionStorage: 세션)
     localStorage.setItem('userData', JSON.stringify(responseData));
