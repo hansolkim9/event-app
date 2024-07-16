@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink, useLoaderData} from 'react-router-dom';
+import {Form, NavLink, useLoaderData, useRouteLoaderData} from 'react-router-dom';
 import styles from './MainNavigation.module.scss';
 
 const MainNavigation = () => {
@@ -13,6 +13,8 @@ const MainNavigation = () => {
         return isActive ? styles.active : undefined;
     }
 
+    const userData = useRouteLoaderData('user-data');
+
     return (
         <header className={styles.header}>
             <nav>
@@ -22,6 +24,11 @@ const MainNavigation = () => {
                     </li>
                     <li>
                         <NavLink to='events' className={activeFn}>Events</NavLink>
+                    </li>
+                    <li>
+                        <Form action='logout' method='POST'>
+                            {userData && <button style={{width: '100%'}}>Logout</button>}
+                        </Form>
                     </li>
                 </ul>
             </nav>
